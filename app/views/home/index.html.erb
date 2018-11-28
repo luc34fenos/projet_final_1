@@ -6,7 +6,9 @@
 
 <% @category.each do |categories| %>
 	<h2><%= categories.title %></h2>
+	<div class="cat">
 	<% @posts.each do |post| %>
+		<div class="catmin">
 		<% if post.category_id == categories.id %>
 			<% if post.img.attached? %>
 				<%= image_tag post.img.variant(resize: "200x200") %>
@@ -31,8 +33,11 @@
 				<%= link_to "effacer", post, method: :delete, data: {confirm: "voullez vous vraiment effacer?"} %>
 			<% end %>
 		<% end %>
+		</div>
 	<% end %>
+</div><br><br>
 <% end %>
+
 
 <% if root %>
 	<%= link_to "nouvelle article", new_post_path %>			
