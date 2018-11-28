@@ -5,7 +5,7 @@ class PaniersController < ApplicationController
 	end
 
 	def create
-		p = Panier.create(user_id: params[:user_id], nbre_items: params[:nbre])
+		p = Command.create(user_id: params[:user_id],panier_id:  nbre_items: params[:nbre])
 		p.posts = [Post.find(params[:posts_id])]
 		p = Post.find(params[:posts_id])
 		n = p.nombre

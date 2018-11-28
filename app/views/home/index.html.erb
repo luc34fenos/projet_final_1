@@ -11,9 +11,9 @@
 		<div class="catmin">
 		<% if post.category_id == categories.id %>
 			<% if post.img.attached? %>
-				<%= image_tag post.img.variant(resize: "200x200") %>
+				<%= image_tag post.img.variant(resize: "180x120") %>
 			<% else %>
-				<img src="int.jpg" style="width: 200px; height: 200px">
+				<img src="int.jpg" style="width: 180px; height: 120px">
 			<% end %>
 			<h3><%= post.title %></h3>
 			<p>description: <%= post.description %></p>
