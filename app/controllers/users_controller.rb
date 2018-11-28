@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   	if user = User.find(params[:id])
   		if user.confirmation_token == params[:token]
   			flash[:notice] = "confiramtion reussie"
+        Panier.create(user_id: user.id)
   			user.update(confirmed: true, confirmation_token: nil)
   			user.save(validate: false)
   			redirect_to root_path

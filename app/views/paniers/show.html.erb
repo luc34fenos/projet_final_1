@@ -1,10 +1,13 @@
 <h1>votre panier</h1>
 
-<% @panier.each do |p| %>
+<% @command.each do |c| %>
 	<div class="form-group">
-		<% p.posts.each do |t| %>
-			<p><%= t.title %></p>
-		<% end %>
-		<p><%= p.nbre_items %></p>
+		<p><%= Post.find(c.post_id).title %></p>
+		<p><%= c.nbre_items %></p>
+		<p><%= link_to "effacer", c, method: :delete %></p>
 	</div>
 <% end %>
+
+<p>montant: $<%= @price %></p>
+
+<%= link_to "acheter", charge_path(@price), data: {confirm: "voulez vous faire cette achat"} %>

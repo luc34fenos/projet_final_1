@@ -22,4 +22,11 @@ module SessionsHelper
 		return signed_in ? (current_user.admin == true) : false
 	end
 
+	def authorize
+		unless signed_in
+			flash[:error] = "vous devez vous connecter"
+			redirect_to log_path
+		end
+	end
+
 end

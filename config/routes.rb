@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 		end
 	end
 
-	resources :paniers, only: [:new, :create, :edit, :show, :update, :delete]
-	resources :charges, only: [:new, :create]
+	resources :paniers, only: [:new, :create, :edit, :show, :update, :destroy]
+	resources :charges, only: [:create]
+	get 'achat/:montant', to: "charges#create", as: "charge"
 
 end
