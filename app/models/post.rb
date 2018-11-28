@@ -1,7 +1,10 @@
 class Post < ApplicationRecord
 
 	belongs_to :category
-	belongs_to :panier, optional: true
+	has_many :commands
+	has_many :paniers, through: :command
+
+	has_one_attached :img
 	
 	validates :title,
 				presence: true,

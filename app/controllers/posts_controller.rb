@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(params.require(:post).permit(:title, :description, :nombre, :price))
+    post = Post.new(params.require(:post).permit(:title, :description, :nombre, :price, :img))
     post.category = Category.find_by(title: params[:post][:category])
   	if post.valid?
       post.save
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   def update
      post = Post.find(params[:id])
     if signed_in && root
-      post.update(params.require(:post).permit(:title, :description, :nombre, :price))
+      post.update(params.require(:post).permit(:title, :description, :nombre, :price, :img))
       if post.valid?
         post.save
         flash[:notice] = "mise a jours reussie"

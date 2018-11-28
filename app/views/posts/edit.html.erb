@@ -6,6 +6,8 @@
 	<% if (current_user.admin == true) %>
 		<h1>editer article</h1>
 		<%= form_for @post do |p| %>
+			<%= p.label "photo: ", :img %>
+			<%= p.file_field :img %><br>
 			<%= p.label "titre: ", :title %>
 			<%= p.text_field :title %><br>
 			<%= p.label "description: ", :description %>

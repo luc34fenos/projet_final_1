@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-	has_many :paniers
+	has_one :paniers
 
 	validates :firstname,
 				presence: true,
