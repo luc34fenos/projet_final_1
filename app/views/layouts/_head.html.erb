@@ -1,0 +1,9 @@
+<%= link_to "voir les articles", root_path %>
+<% if signed_in %>
+	<%= link_to "profil", user_path(current_user.id) %>
+	<%= link_to "voir le panier", panier_path(current_user.id) %>
+	<%= link_to "se deconnecter", logout_path , method: :delete %>
+<% else %>
+	<%= link_to "se connecter", log_path %>
+	<%= link_to "s'inscrire", new_user_path %>
+<% end %>

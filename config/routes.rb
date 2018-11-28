@@ -1,3 +1,20 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  	resources :posts, only: [:new, :create, :edit, :update, :destroy] 
+
+	root "home#index"
+
+	get '/login', to: 'sessions#new', as: "log"
+	post '/login', to: 'sessions#create', as: "login"
+	delete '/logout', to: 'sessions#destroy'
+
+	resources :users, only: [:new, :create, :show, :edit, :update, :destroy] do
+		member do
+			get "confirm"
+		end
+	end
+
+	resources :paniers, only: [:new, :create, :edit, :show, :update, :delete]
+	resources :charges, only: [:new, :create]
+
 end

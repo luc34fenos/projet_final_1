@@ -1,0 +1,30 @@
+<h1>bienvenue sure notre site</h1>
+
+<% if flash[:error] || flash[:notice] %>
+  	<script type="text/javascript">alert("<%= flash[:error] %><%= flash[:notice] %>")</script>
+<% end %>
+
+<% @posts.each do |post| %>
+	<div class="form-group">
+		<h2><%= post.title %></h2>
+		<p>description: <%= post.description %></p>
+		<p>nombre: <%= post.nombre %></p>
+		<p>prix par article: <%= post.price %> eur</p>
+		<% if signed_in %>
+			<form action="<%= paniers_path %>" method="post">
+				<input type="hidden" name="authenticity_token" value="form_authenticity_token">
+				<input type="hidden" name="user_id" value="<%= current_user.id %>">
+				<input type="hidden" name="posts_id" value="<%= post.id %>">
+				<input type="number" class="doc<%= post.id %>"  min="0" max="<%= post.nombre %>" name="nbre" style="width: 60px" />
+				<button type="submit" class="but<%= post.id %>"> ajouter au panier</button>
+			</form>
+		<% end %>
+		<% if root %>
+			<%= link_to "editer", edit_post_path(post.id) %>
+			<%= link_to "effacer", post, method: :delete, data: {confirm: "voullez vous vraiment effacer?"} %>
+		<% end %>
+	</div>
+<% end %>
+<% if root %>
+	<%= link_to "nouvelle article", new_post_path %>			
+<% end %>

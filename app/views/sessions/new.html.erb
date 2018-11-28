@@ -1,0 +1,13 @@
+<h1>se connecter</h1>
+
+<% if flash[:error] || flash[:notice] %>
+  	<script type="text/javascript">alert("<%= flash[:error] %><%= flash[:notice] %>")</script>
+<% end %>
+
+<%= form_for(:session, url: login_path) do |t| %>
+	<%= t.label 'email' %>
+	<%= t.text_field :email %><br>
+	<%= t.label "mot de passe" %>
+	<%= t.password_field :password %><br>
+	<%= t.submit "se connecter" %>
+<% end %> 

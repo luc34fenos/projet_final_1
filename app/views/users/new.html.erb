@@ -1,0 +1,35 @@
+<h1>s'inscrire sur le site ....</h1>
+
+<% if flash[:error] || flash[:notice] %>
+  	<script type="text/javascript">alert("<%= flash[:error] %><%= flash[:notice] %>")</script>
+<% end %>
+
+<% if @user.errors.any? %>
+	<div class="alert alert-danger">
+		<ul>
+			<% @user.errors.full_messages.each do |t| %>
+				<li><%= t %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<%= form_for @user do |f| %>
+	<%= f.label "Nom: " %>
+	<%= f.text_field :firstname %><br>
+
+	<%= f.label "Prenom: ", :lastname %>
+	<%= f.text_field :lastname %><br>
+	
+	<%= f.label "Email: " %>
+	<%= f.text_field :email %><br>
+	
+	<%= f.label "Mot de Passe: " %>
+	<%= f.password_field :password %><br>
+
+	<%= f.label "confirmer le mot de passe: " %>
+	<%= f.password_field :password_confirmation %><br>
+	
+	<%= f.submit "s'inscrire" %>
+
+<% end %>

@@ -1,0 +1,9 @@
+<h1>Bienvenue a vous <%= @user.firstname %> <%= @user.lastname %></h1>
+
+<p>on vous remercie de votre inscription sur notre site</p>	
+
+<p> pour confirmer votre compte veuillez cliquer sur le lien</p>
+
+<p><%= link_to "confirm", confirm_user_url(id: @user.id, token: @user.confirmation_token) %></p>
+
+<p> Merci!!!</p>

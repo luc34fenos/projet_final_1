@@ -1,0 +1,34 @@
+<% if flash[:error] || flash[:notice] %>
+  	<script type="text/javascript">alert("<%= flash[:error] %><%= flash[:notice] %>")</script>
+<% end %>
+
+<% if (signed_in ) %>
+	<% if (current_user.admin == true) %>
+		<h1>nouvelle article</h1>
+		<%= form_for @post do |p| %>
+			<%= p.label "titre: ", :title %>
+			<%= p.text_field :title %><br>
+			<%= p.label "description: ", :description %>
+			<%= p.text_area :description %><br>
+			<%= p.label "nombre: ", :nombre %>
+			<%= p.text_field :nombre %><br>
+			<%= p.label "prix en euro: ", :price %>
+			<%= p.text_field :price %><br>
+			<select name="post[category]">
+				<% @cat.each do |opt| %>
+			  		<option><%= opt.title %></option>
+				<% end %>
+			</select><br>
+			<%= p.submit "mettre en ligne" %>
+
+		<% end %>
+	<% else %>
+		<div class="alert alert-danger">Vous n'etes pas autorisee a creer un nouvelle article</div>
+		<%= link_to "revenir a l'accueil", root_path %><br>
+		<%= link_to 'se connecter', log_path %>
+	<% end %>
+<% else %>
+	<div class="alert alert-danger">Vous n'etes pas autorisee a creer un nouvelle article</div>
+	<%= link_to "revenir a l'accueil", root_path %><br>
+	<%= link_to 'se connecter', log_path %>
+<% end %>

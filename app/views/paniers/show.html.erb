@@ -1,0 +1,10 @@
+<h1>votre panier</h1>
+
+<% @panier.each do |p| %>
+	<div class="form-group">
+		<% p.posts.each do |t| %>
+			<p><%= t.title %></p>
+		<% end %>
+		<p><%= p.nbre_items %></p>
+	</div>
+<% end %>

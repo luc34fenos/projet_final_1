@@ -1,0 +1,22 @@
+<h1>votre profil</h1>
+
+<% if flash[:error] || flash[:notice] %>
+  	<script type="text/javascript">alert("<%= flash[:error] %><%= flash[:notice] %>")</script>
+<% end %>
+
+<div class="form-group">	
+	<label>nom: </label>
+	<%= @user.firstname %><br>
+</div>
+<div class="form-group">
+	<label>prenom: </label>
+	<%= @user.lastname %><br>
+</div>
+<div class="form-group">	
+	<label>email: </label>
+	<%= @user.email %><br>
+</div>
+<div class="form-group">
+	<%= link_to "editer", edit_user_path %>
+	<%= link_to "effacer", current_user, method: :delete, data: {confirm: "etes vous sur d'effacer le compte"} %>
+</div>	
