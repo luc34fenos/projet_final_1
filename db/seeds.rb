@@ -8,11 +8,15 @@
 
 User.create(firstname: "admin", lastname: "admin", email: "fef@fef.fef", password: "root", password_confirmation: "root", confirmed: true, confirmation_token: nil)
 
-(1..5).to_a.each{|t|
-	Category.create(title: "category#{t}");
-	User.create(firstname: "NAME#{t}", lastname: "last#{t}", email: "email@ex#{t}.com", password: "pass#{t}", password_confirmation: "pass#{t}", confirmed: true, confirmation_token: nil)
+(0..5).to_a.each{|t|
+	Category.create(title: "category#{t}");	
 }
 
 20.times{|u|
-	Post.create(title: "post#{u}", description: "description cool numero #{u}", nombre: 8, price: 6, category_id: u%5 )
+	Post.create(title: "post#{u}", description: "description cool numero #{u}", nombre: 8, price: 6, category_id: u%6 )
 }
+
+=begin
+User.create(firstname: "NAME#{t}", lastname: "last#{t}", email: "email@ex#{t}.com",
+password: "pass#{t}", password_confirmation: "pass#{t}", confirmed: true, confirmation_token: nil)
+=end
