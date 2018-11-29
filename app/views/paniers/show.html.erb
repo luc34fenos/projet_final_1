@@ -1,13 +1,20 @@
 <h1>votre panier</h1>
 
+<% if flash[:error] || flash[:notice] %>
+  	<script type="text/javascript">alert("<%= flash[:error] %><%= flash[:notice] %>")</script>
+<% end %>
+
 <% @command.each do |c| %>
 	<div class="form-group">
-		<p><%= Post.find(c.post_id).title %></p>
-		<p><%= c.nbre_items %></p>
+		<p>titre: <%= Post.find(c.post_id).title %></p>
+		<p>nombre d'article: <%= c.nbre_items %></p>
+		<p>prix(total) : <%= c.price %></p>
 		<p><%= link_to "effacer", c, method: :delete %></p>
 	</div>
 <% end %>
 
 <p>montant: $<%= @price %></p>
 
-<%= link_to "acheter", charge_path(@price), data: {confirm: "voulez vous faire cette achat"} %>
+<% if @price != 0 %>
+	<%= link_to "acheter", achat_path(@price), data: {confirm: "voulez vous faire cette achat"} %>
+<% end %>

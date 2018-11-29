@@ -1,16 +1,15 @@
 class ChargesController < ApplicationController
 
 	before_action :authorize 
+	@@amount = 0
 
 	def new
-		
+		@amount = @@amount = params[:montant].nil? ? 5 : params[:montant] 
 	end
 
 	def create
 	  # Amount in cents
-	  
-	  puts params[:montant]
-	  @amount = params[:montant].nil? ? 5 : params[:montant]
+	  @amount = @@amount
 
 	  customer = Stripe::Customer.create(
 	    :email => params[:stripeEmail],

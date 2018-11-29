@@ -5,18 +5,26 @@ class PaniersController < ApplicationController
 	end
 
 	def create
-
-		Command.create(panier_id: monpanierid,post_id: params[:posts_id], nbre_items: params[:nbre], price: prx(params[:posts_id]))
 		p = Post.find(params[:posts_id])
-		n = p.nombre
-		p.update(nombre: (n.to_i - params[:nbre].to_i))
-		redirect_to root_path
+		nb = p.nombre.to_i
+		if (nb >= params[:nbre].to_i) && (nb >= 0)
+			if r = Command.where(post_id: params[:posts_id], panier_id: monpanierid).first
+				h = r.nbre_items
+				r.update(nbre_items: h.to_i + params[:nbre].to_i)
+			else
+				Command.create(panier_id: monpanierid,post_id: params[:posts_id], nbre_items: params[:nbre], price: prx(params[:posts_id], params[:nbre]))
+			end
+			p.update(nombre: (nb.to_i - params[:nbre].to_i))
+		else
+			flash[:error] = 'article manquant'
+		end
+		redirect_to panier_path(monpanierid)
 	end
 
 	def show
 		if signed_in
 			@command = Command.where(panier_id: monpanierid)
-			
+			@price = totalprix
 		else
 			flash[:error] = "invalid"
 			redirect_to log_path
@@ -40,23 +48,22 @@ class PaniersController < ApplicationController
 		return Panier.find_by(user_id: current_user.id).id
 	end
 
-	def prx(prm)
-		b=0
+	def prx(prm, nb = 1)
 		p = Post.where(id: prm)
-		p.each do |g|
-			b += g.price
-		end
-		return b
+		return p[0].price * nb.to_i
 	end
-=begin
-	def prix
-		a = 0
+
+	def totalprix
 		c = Command.where(panier_id: monpanierid)
-		c.each do |f|
-			a += c.price
+		if c.length != 0
+			a = 0
+			c.each do |cprim|
+				a += cprim.price
+			end
+			return a
+		else
+			return 0
 		end
-		return a
 	end
-=end
 
 end

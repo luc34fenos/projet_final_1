@@ -8,7 +8,7 @@
 	<h2><%= categories.title %></h2>
 	<div class="cat">
 	<% @posts.each do |post| %>
-		<% if post.category_id == categories.id %>
+		<% if post.category_id == categories.id && post.nombre != 0%>
 		<div class="catmin">
 			<% if post.img.attached? %>
 				<%= image_tag post.img.variant(resize: "180x120") %>
