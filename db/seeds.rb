@@ -7,16 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 add = User.new(firstname: "admin", lastname: "admin", email: "admin@dev.mg", password: "root", password_confirmation: "root", confirmed: true, admin: true)
-add.save(validate: false)
+add.save
 add.update(confirmation_token: nil)
 add.save(validate: false)
-# (0..5).to_a.each{|t|
-# 	Category.create(title: "category#{t}");	
-# }
 
-# 20.times{|u|
-# 	Post.create(title: "post#{u}", description: "description cool numero #{u}", nombre: 8, price: 6, category_id: u%6 )
-# }
+
+#Category.create(title: 'Chatton')
+#Category.create(title: 'Mouton')
+#Category.create(title: 'Aligator')
+
 
 =begin
 User.create(firstname: "NAME#{t}", lastname: "last#{t}", email: "email@ex#{t}.com",

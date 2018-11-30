@@ -28,7 +28,7 @@
 									<input type="hidden" name="user_id" value="<%= current_user.id %>">
 									<input type="hidden" name="posts_id" value="<%= post.id %>">
 									<input type="number" class="doc<%= post.id %>"  min="0" max="<%= post.nombre %>" name="nbre" style="width: 60px" />
-									<button type="submit" class="but<%= post.id %>"> ajouter au panier</button>
+									<button type="submit" class="btn btn-primary"> ajouter au panier</button>
 								</form>
 							<% end %>
 							<% if root %>

@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   
   def new
   	@user = User.new
-  	@user.valid?
   end
 
   def create
