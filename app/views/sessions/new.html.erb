@@ -1,13 +1,35 @@
-<h1>se connecter</h1>
-
 <% if flash[:error] || flash[:notice] %>
   	<script type="text/javascript">alert("<%= flash[:error] %><%= flash[:notice] %>")</script>
 <% end %>
-
-<%= form_for(:session, url: login_path) do |t| %>
-	<%= t.label 'email' %>
-	<%= t.text_field :email %><br>
-	<%= t.label "mot de passe" %>
-	<%= t.password_field :password %><br>
-	<%= t.submit "se connecter" %>
-<% end %> 
+<br><br><br><br><br>
+<center>
+	<div class="col-lg-6 col-md-8 mb-6">
+		<div class="panel-heading">CONNEXION</div>
+		<center>
+		<div class="card-body">
+			<%= form_for(:session, url: login_path) do |f| %>
+			<div class="form-group">
+				<%= f.label :email, "Email", class: "col-md-4 control-label" %>
+				<div class="col-md-15">
+				<%= f.text_field :email, class: "form-control" %>	
+				</div>	
+			</div>
+			<div class="form-group">
+				<%= f.label :password, "Password", class: "col-md-4 control-label" %>
+				<div class="col-md-15">
+				<%= f.password_field :password, class: "form-control" %>	
+				</div>	
+			</div>
+			<div class="form-group">
+				<div class="col-md-6 col-md-offset-4">
+					<button type="submit" class="btn btn-primary">
+						se connecter
+					</button>
+				</div>
+			</div>
+		</div>
+		<% end %>
+		</center>
+	</div>
+</center>
+<br><br><br><br>

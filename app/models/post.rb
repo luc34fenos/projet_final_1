@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 	
 	validates :title,
 				presence: true,
-				length: {minimum: 5, message: "titre minimum 5 caracter"},
+				length: {minimum: 3, message: "titre minimum 3 caracter"},
 				uniqueness: true
 	
 end

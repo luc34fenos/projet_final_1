@@ -1,3 +1,57 @@
+<div class="col-lg-15">
+   
+    
+ <% @category.each do |categories| %>
+    <h2><%= categories.title %></h2>
+    <div class="row">
+	    <% @posts.each do |post| %>
+	    	<% if post.category_id == categories.id && post.nombre != 0%>
+			
+            	<div class="col-lg-3 col-md-6 mb-4" >
+              		<div class="card h-100">
+              	
+					                <% if post.img.attached? %>
+										<%= image_tag post.img.variant(resize: "180x100"), height: 150, class:"card-img-top" %>
+									<% else %>
+										<img src="int.jpg" class="card-img-top" height= "150">
+									<% end %>
+						
+		                <div class="card-body">
+		                  <h4 class="card-title"><%= post.title %></h4>
+		                  <h5><%= post.price %> Ar</h5>
+		                  <p class="card-text"><%= post.description %></p>
+		                </div>
+		                <div class="card-footer">
+		                  	<% if signed_in %>
+								<form action="<%= paniers_path %>" method="post">
+									<input type="hidden" name="authenticity_token" value="form_authenticity_token">
+									<input type="hidden" name="user_id" value="<%= current_user.id %>">
+									<input type="hidden" name="posts_id" value="<%= post.id %>">
+									<input type="number" class="doc<%= post.id %>"  min="0" max="<%= post.nombre %>" name="nbre" style="width: 60px" />
+									<button type="submit" class="but<%= post.id %>"> ajouter au panier</button>
+								</form>
+							<% end %>
+							<% if root %>
+								<%= link_to "editer", edit_post_path(post.id) %>
+								<%= link_to "effacer", post, method: :delete, data: {confirm: "voullez vous vraiment effacer?"} %>
+							<% end %>
+		                </div>
+	                
+              		</div>
+           	 	</div>
+			
+			<% end %>
+		<% end %>
+	</div>
+<% end %>
+   
+</div>
+
+
+
+
+
+<!-- </div>
 <h1>bienvenue sure notre site</h1>
 
 <% if flash[:error] || flash[:notice] %>
@@ -36,7 +90,7 @@
 		<% end %>
 	<% end %>
 </div><br><br>
-<% end %>
+<% end %> -->
 
 
 <% if root %>
